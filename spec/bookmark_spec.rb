@@ -1,15 +1,16 @@
-require "bookmark"
-require_relative "./features/web_helper.rb"
+# frozen_string_literal: true
+
+require 'bookmark'
+require_relative './features/web_helper'
 
 describe Bookmark do
-
-  describe "#all" do
-    it "should return all the element of an array" do
+  describe '#all' do
+    it 'should return all the element of an array' do
       add_test_bookmarks
       bookmark = Bookmark.all.first
       p bookmark
-      expect(bookmark.title).to eq("Makers")
-      expect(bookmark.url).to eq("http://www.makersacademy.com")
+      expect(bookmark.title).to eq('Makers')
+      expect(bookmark.url).to eq('http://www.makersacademy.com')
     end
   end
 

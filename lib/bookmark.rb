@@ -1,4 +1,6 @@
-require "pg"
+# frozen_string_literal: true
+
+require 'pg'
 
 class Bookmark
   attr_reader :title, :url, :id
@@ -11,10 +13,9 @@ class Bookmark
 
   def self.all
     conn = PG.connect(dbname: choose_database)
-    conn.exec("SELECT * FROM bookmarks").map {
-      |bookmark|
-     Bookmark.new(bookmark["title"], bookmark["url"], bookmark["id"])
-    }
+    conn.exec('SELECT * FROM bookmarks').map do |bookmark|
+      Bookmark.new(bookmark['title'], bookmark['url'], bookmark['id'])
+    end
   end
 
   def self.create(link, name)
@@ -22,8 +23,7 @@ class Bookmark
     conn.exec("INSERT INTO bookmarks (url, title) VALUES('#{link}', '#{name}')")
   end
 
-  private
   def self.choose_database
-    ENV["RACK_ENV"] == "test" ?  "bookmark_manager_test" :  "bookmark_manager"
+    ENV['RACK_ENV'] == 'test' ? 'bookmark_manager_test' : 'bookmark_manager'
   end
 end
