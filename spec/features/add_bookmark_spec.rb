@@ -4,8 +4,10 @@ feature 'testing adding a new bookmark' do
   scenario 'Add a new bookmark and expect our bookmarks page to update' do
     visit('/')
     fill_in('add_bookmark', with: 'www.amazon.co.uk')
+    fill_in('add_name', with:'Amazon')
     click_button('Add')
     click_button("View Bookmarks")
-    expect(page).to have_content('www.amazon.co.uk')
+    expect(page).to have_content('Amazon')
+   
   end
 end

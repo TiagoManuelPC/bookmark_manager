@@ -9,7 +9,13 @@
 <body>
 <div class='bookmarks-container'>
   <h2>Here are your Bookmarks</h2>
-  <%= @bookmarks.join("<br>") %>
+  <% @bookmarks.each do |bookmark|%>
+  <li>
+  <a href="<%= bookmark.url%>">
+  <%= bookmark.title%>
+  </a>
+  </li>
+<% end %>
 </div>
 </body>
 </html>
