@@ -4,6 +4,10 @@ As a User
 So I can manage my bookmarks
 I would like to be able to see a view of my bookmarks
 
+As a User
+So I can manage my bookmarks
+I would like to be able to add a new bookmark.
+
 ![Domain Model](/images/domain-model_list.jpg)
 
 How to create/use a database for this project.

@@ -8,11 +8,20 @@ class Bookmark
   end
 
   def self.all
-    ENV["RACK_ENV"] == "test" ? db = "bookmark_manager_test" : db = "bookmark_manager"
-    conn = PG.connect(dbname: db)
+    conn = PG.connect(dbname: choose_database)
     conn.exec("SELECT * FROM bookmarks").map {
       |bookmark|
       bookmark["url"]
     }
+  end
+
+  def self.create(link)
+    conn = PG.connect(dbname: choose_database)
+    conn.exec("INSERT INTO bookmarks (url) VALUES('#{link}')")
+  end
+
+  private
+  def self.choose_database
+    ENV["RACK_ENV"] == "test" ?  "bookmark_manager_test" :  "bookmark_manager"
   end
 end
